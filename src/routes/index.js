@@ -9,11 +9,11 @@ app.listen(port, () => {
 
 app.use(express.json())
 
-// const token = require('./token')
-// app.use('/auth', token)
+const token = require('./token')
+app.use('/auth', token)
 
-// const pedestrian = require('./pedestrian')
-// app.use('/pedestrian', pedestrian)
+const pedestrian = require('./pedestrian')
+app.use('/pedestrian', pedestrian)
 
 app.get('/', (req, res) => {
 	res.send({
