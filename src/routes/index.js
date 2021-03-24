@@ -21,3 +21,8 @@ app.get('/', (req, res) => {
 		'version':process.env.APP_VERSION
 	})
 })
+
+module.exports = {
+	token, 
+	pedestrian
+}
