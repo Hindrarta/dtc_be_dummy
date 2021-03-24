@@ -5,9 +5,9 @@ function getPeopleDensity() {
 	let peopleCount = Math.floor(Math.random() * 50)
 	let peopleDensity = 0
 
-	if(peopleCount > low && peopleCount < med) {
+	if(peopleCount > low && peopleCount <= med) {
 		peopleDensity = 1
-	} else if(peopleCount > med && peopleCount < hig) {
+	} else if(peopleCount > med && peopleCount <= hig) {
 		peopleDensity = 2
 	} else if(peopleCount > hig) {
 		peopleDensity = 3
