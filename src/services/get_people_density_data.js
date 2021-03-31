@@ -2,19 +2,27 @@ function getPeopleDensity() {
 	let low = process.env.PEOPLE_LOW
 	let med = process.env.PEOPLE_MED
 	let hig = process.env.PEOPLE_HIG
-	let peopleCount = Math.floor(Math.random() * 50)
-	let peopleDensity = 0
+	let max = process.env.PEOPLE_MAX
 
-	if(peopleCount > low && peopleCount <= med) {
-		peopleDensity = 1
-	} else if(peopleCount > med && peopleCount <= hig) {
-		peopleDensity = 2
-	} else if(peopleCount > hig) {
-		peopleDensity = 3
+	let peopleCount = 0
+	let peopleDensity = Math.floor(Math.random() * 4)
+	let n = 0
+
+	if(peopleDensity == 1) {
+		n = med - low
+		peopleCount = (Math.floor(Math.random() * n) + Number(low) )
+	} else if(peopleDensity == 2) {
+		n = hig - med
+		peopleCount = (Math.floor(Math.random() * n) + Number(med) )
+	} else if(peopleDensity == 3) {
+		n = max - hig
+		peopleCount = (Math.floor(Math.random() * n) + Number(hig) ) 
 	} else {
+		peopleCount = 0
 		peopleDensity = 0
 	}
-
+	console.log(n, peopleCount, peopleDensity)
+	console.log(typeof(peopleCount))
 	return ({
 		'peopleCount':peopleCount,
 		'peopleDensity':peopleDensity,
