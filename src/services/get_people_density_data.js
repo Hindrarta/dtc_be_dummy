@@ -29,6 +29,27 @@ function getPeopleDensity() {
 	})
 }
 
+function convertDensity(count) {
+	let low = process.env.PEOPLE_LOW
+	let med = process.env.PEOPLE_MED
+	let hig = process.env.PEOPLE_HIG
+	let max = process.env.PEOPLE_MAX
+	let density = 0
+
+	if(count > low && count < med) {
+		density = 1	
+	} else if(count >= med && count < hig) {
+		density = 2	
+	} else if(count >= hig) {
+		density = 3	
+	} else {
+		density = 0
+	}
+
+	return density
+}
+
 module.exports = {
 	getPeopleDensity,
+	convertDensity,
 }
