@@ -15,6 +15,9 @@ app.use('/auth', token)
 const pedestrian = require('./pedestrian')
 app.use('/pedestrian', pedestrian)
 
+const vehicle = require('./vehicle')
+app.use('/vehicle', vehicle)
+
 app.get('/', (req, res) => {
 	res.send({
 		'title':'DTC Backend Dummy Data',

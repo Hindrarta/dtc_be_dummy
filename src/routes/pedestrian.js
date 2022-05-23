@@ -76,20 +76,27 @@ router.post('/setPeopleData', auth, (req,res) => {
 					'err':err
 				})
 			} else {
-				globalVar.peopleCount_L1 = req.body.peopleCount_L1
-				globalVar.peopleCount_L2 = req.body.peopleCount_L2
-				globalVar.peopleDensity_L1 = get_data.convertDensity(globalVar.peopleCount_L1)
-				globalVar.peopleDensity_L2 = get_data.convertDensity(globalVar.peopleCount_L2)
+				try {
+					globalVar.peopleCount_L1 = req.body.peopleCount_L1
+					globalVar.peopleCount_L2 = req.body.peopleCount_L2
+					globalVar.peopleDensity_L1 = get_data.convertDensity(globalVar.peopleCount_L1)
+					globalVar.peopleDensity_L2 = get_data.convertDensity(globalVar.peopleCount_L2)
+					res.status(200).send({
+						"message": "JWT Auth Successfull, POST setPeopleData",
+						"data": {
+							'peopleCount_L1': globalVar.peopleCount_L1,
+							'peopleDensity_L1': globalVar.peopleDensity_L1,
+							'peopleCount_L2': globalVar.peopleCount_L2,
+							'peopleDensity_L2': globalVar.peopleDensity_L2,
+						}
+					});
+				} catch (error) {
+					res.status(500).send({
+						"message": "Error POST /setPeopleData",
+						"err": err
+					})
+				}
 
-				res.status(200).send({
-					"message": "JWT Auth Successfull, POST setPeopleData",
-					"data": {
-						'peopleCount_L1': globalVar.peopleCount_L1,
-						'peopleDensity_L1': globalVar.peopleDensity_L1,
-						'peopleCount_L2': globalVar.peopleCount_L2,
-						'peopleDensity_L2': globalVar.peopleDensity_L2,
-					}
-				});
 			}	
 		})
 	} catch (err) {
@@ -99,6 +106,20 @@ router.post('/setPeopleData', auth, (req,res) => {
 		});
 	}
 
+})
+
+router.get('/getTest', (req, res, next) => {
+	try {
+		const aa = req.body.aaa
+		const ab = req.body.aab
+		console.log(aa, ab)
+		console.log(req.body)
+		res.send({
+			'message':"OK"
+		})
+	} catch (error) {
+		next(err)
+	}
 })
 
 router.get('/', (req, res) => {
